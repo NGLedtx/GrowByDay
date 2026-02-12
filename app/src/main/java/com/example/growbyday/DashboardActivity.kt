@@ -1,42 +1,25 @@
 package com.example.growbyday
 
 import android.os.Bundle
-import android.util.Log
+import android.os.PersistableBundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import java.text.NumberFormat
-import java.util.Locale
-import kotlin.math.pow
 
-class DashboardActivity: AppCompatActivity() {
+class DashboardActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-
-        val username = intent.getStringExtra("USERNAME")
-        val totaldays = intent.getIntExtra("TOTAL_DAYS", 0)
+        val value = intent.getDoubleExtra("VALUE", 0.0)
+        val totaldays = intent.getIntExtra("DAYS", 0)
+        val username = intent.getStringExtra("USERNAME") ?: ""
 
         val name = findViewById<TextView>(R.id.name)
-        name.text = "Olá ${username ?: "usuário"}👋🏻, tudo bem?"
-
+        name.text = "Olá ,$username 👋🏻"
         val days = findViewById<TextView>(R.id.days)
-        val valgoal = findViewById<TextView>(R.id.valgoal)
-        fun soma(){
-            val a1 = 1
-            val r = 1
-            val n = totaldays
+        days.text = "Desafio: $totaldays dias!"
 
-            var term = a1
-            var value = 0
 
-            for(i in 1..n){
-                value += term
-                term += r
-            }
-            days.text = "Você estabeleceu a meta para: ${totaldays} dias! Ou seja, no final do desafio você vai ter acumulado"
-            valgoal.text = "R$ ${value},00"
-        }
-        soma()
 
     }
 }
